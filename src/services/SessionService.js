@@ -14,7 +14,7 @@ export const addSession = () => {
     id: shortid.generate(),
     start: moment.utc()
   };
-  return SessionData.addSession(session);
+  return SessionData.addSession(session).then(() => session);
 };
 
 export const updateSession = session =>
