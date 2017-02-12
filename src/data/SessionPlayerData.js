@@ -25,6 +25,15 @@ export function addSessionPlayer(sessionId, playerId) {
   });
 }
 
+export function addSessionPlayers(sessionId, players) {
+  const queries = players.map(player => ({
+    text: 'INSERT INTO bigtwo.sessionplayers (sessionid, playerid) VALUES ($1, $2)',
+    values: [ sessionId, player ]
+  }));
+
+  return Pool.queries(queries);
+}
+
 export function deleteSessionPlayer(sessionId, playerId) {
   return Pool.query({
     text: 'DELETE FROM bigtwo.sessionplayers WHERE sessionid = $1 AND playerid = $2',
