@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon src/server/index.js --exec babel-node --presets es2015",
+    "dev:server": "nodemon src/server/index.js --exec babel-node --presets node6",
     "clean": "rimraf \"lib\"",
-    "build": "npm run clean && NODE_ENV=production babel --presets es2015 -d lib/ src/",
+    "build": "npm run clean && NODE_ENV=production babel --presets node6 -d lib/ src/",
     "prod:server": "node lib/server/index.js",
     "postinstall": "npm run build",
     "start": "npm run prod:server"
@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.22.2",
-    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-node6": "^11.0.0",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "dotenv": "^4.0.0",

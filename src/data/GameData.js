@@ -1,12 +1,22 @@
 import Pool from './ConnectionPool';
 
+export function getSessionGames(sessionId, offset = 0, size = 500) {
+  let text = 'SELECT g.id, g.timestamp, g.sessionid, s.playerid, s.score';
+  text += ' FROM bigtwo.games AS g LEFT OUTER JOIN bigtwo.scores AS S ON (g.id = s.gameid)';
+  text += ' WHERE g.sessionid = $1 LIMIT $2 OFFSET $3';
 
-export function getSessionGames(sessionId, offset = 0, size = 200) {
+  return Pool.query({
+    text,
+    values: [ sessionId, size, offset ]
+  });
+}
+
+/*export function getSessionGames(sessionId, offset = 0, size = 200) {
   return Pool.query({
     text: 'SELECT * FROM bigtwo.games WHERE sessionid = $1 LIMIT $2 OFFSET $3',
     values: [ sessionId, size, offset ]
   });
-}
+}*/
 
 export function getGame(id) {
   return Pool.queries([

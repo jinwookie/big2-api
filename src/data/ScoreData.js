@@ -9,7 +9,7 @@ export function getScores(gameId, offset = 0, size = 200) {
 
 export function getScore(id) {
   return Pool.query({
-    text: 'SELECT * FROM bigtwo.games WHERE id = $1',
+    text: 'SELECT * FROM bigtwo.scores WHERE id = $1',
     values: [ id ]
   });
 }

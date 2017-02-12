@@ -4,7 +4,33 @@ import * as GameData from '../data/GameData';
 import * as ScoreData from '../data/ScoreData';
 
 export const getGames = sessionId =>
-  GameData.getSessionGames(sessionId).then(response => response.rows);
+  GameData.getSessionGames(sessionId).then(response =>
+    response.rows.reduce((acc, current) => {
+      if (!acc.some(game => game.id === current.id)) {
+        return [
+          ...acc,
+          {
+            id: current.id,
+            timestamp: current.timestamp,
+            sessionid: current.sessionid,
+            scores: current.playerid ?
+            [
+              {
+                playerid: current.playerid,
+                score: current.score
+              }
+            ] : [ ]
+          }
+        ];
+      }
+
+      acc.find(game => game.id === current.id).scores.push({ playerid: current.playerid, score: current.score });
+      return acc;
+    }, [ ])
+  );
+
+/*export const getGames = sessionId =>
+  GameData.getSessionGames(sessionId).then(response => response.rows);*/
 
 export const getGame = id =>
   GameData.getGame(id).then(responses => {
