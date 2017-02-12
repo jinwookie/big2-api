@@ -31,6 +31,8 @@ export function addSessionPlayers(sessionId, players) {
     values: [ sessionId, player ]
   }));
 
+  console.log(queries);
+
   return Pool.queries(queries);
 }
 
