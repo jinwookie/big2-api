@@ -57,7 +57,7 @@ export const addGame = (sessionId, scores) => {
         score.gameId = game.id;
         return ScoreData.addScore(score);
       })
-    )
+    ).then(() => game)
   );
 };
 

@@ -19,3 +19,5 @@ export const addSession = () => {
 
 export const updateSession = session =>
   SessionData.updateSession(session);
+
+export const deleteSession = id => SessionData.deleteSession(id);

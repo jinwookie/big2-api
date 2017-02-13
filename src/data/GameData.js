@@ -41,10 +41,16 @@ export function addGame(game) {
 }
 
 export function deleteGame(id) {
-  return Pool.query({
-    text: 'DELETE FROM bigtwo.games WHERE id = $1',
-    values: [ id ]
-  });
+  return Pool.queries([
+    {
+      text: 'DELETE FROM bigtwo.scores WHERE gameid = $1',
+      values: [ id ]
+    },
+    {
+      text: 'DELETE FROM bigtwo.games WHERE id = $1',
+      values: [ id ]
+    }
+  ]);
 }
 
 /*export function updateGame(game) {
