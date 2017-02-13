@@ -2,7 +2,7 @@ import Pool from './ConnectionPool';
 
 export function getSessions(offset = 0, size = 200) {
   return Pool.query({
-    text: 'SELECT * FROM bigtwo.sessions LIMIT $1 OFFSET $2',
+    text: 'SELECT * FROM bigtwo.sessions ORDER BY start DESC LIMIT $1 OFFSET $2',
     values: [ size, offset ]
   });
 }

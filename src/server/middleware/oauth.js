@@ -1,5 +1,5 @@
 const oauth = (req, res, next) => {
-  const authorization = req.get('authorization');
+  const authorization = req.get('Authorization');
   if (authorization) {
     const authArray = authorization.split(' ');
     if (authArray.length > 1 && authArray[1] === process.env.TOKEN)
