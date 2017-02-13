@@ -17,7 +17,9 @@ export const addSession = () => {
   return SessionData.addSession(session).then(() => session);
 };
 
-export const updateSession = session =>
-  SessionData.updateSession(session);
+export const updateSession = (id, session) => {
+  session.id = id;
+  return SessionData.updateSession(session);
+};
 
 export const deleteSession = id => SessionData.deleteSession(id);

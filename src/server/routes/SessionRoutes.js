@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  SessionService.updateSession(req.body)
+  SessionService.updateSession(req.params.id, req.body)
     .then(() => res.status(204).send())
     .catch(err => res.status(400).send(err.message));
 });

@@ -30,7 +30,7 @@ export function deleteSession(id) {
 
 export function updateSession(session) {
   return Pool.query({
-    text: 'UPDATE bigtwo.sessions SET start = $2, end = $3 WHERE id = $1',
+    text: 'UPDATE bigtwo.sessions SET start = $2, "end" = $3 WHERE id = $1',
     values: [ session.id, session.start, session.end ]
   });
 }
