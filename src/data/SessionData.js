@@ -24,11 +24,11 @@ export function addSession(session) {
 export function deleteSession(id) {
   const queries = [
     {
-      text: 'DELETE FROM bigtwo.sessions WHERE id = $1',
+      text: 'DELETE FROM bigtwo.sessionplayers WHERE sessionid = $1',
       values: [ id ]
     },
     {
-      text: 'DELETE FROM bigtwo.sessionplayers WHERE sessionid = $1',
+      text: 'DELETE FROM bigtwo.sessions WHERE id = $1',
       values: [ id ]
     }
   ];
