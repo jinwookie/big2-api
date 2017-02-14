@@ -66,3 +66,6 @@ export const deleteGame = id => GameData.deleteGame(id);
 // game: { id: 'id', scores: [ { id: 'id', score: 1 } ] }
 export const updateGame = game =>
   game.scores.map(score => ScoreData.updateScore(score));
+
+export const getTotals = () =>
+  ScoreData.getTotals().then(response => response.rows);

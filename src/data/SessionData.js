@@ -22,10 +22,18 @@ export function addSession(session) {
 }
 
 export function deleteSession(id) {
-  return Pool.query({
-    text: 'DELETE FROM bigtwo.sessions WHERE id = $1',
-    values: [ id ]
-  });
+  const queries = [
+    {
+      text: 'DELETE FROM bigtwo.sessions WHERE id = $1',
+      values: [ id ]
+    },
+    {
+      text: 'DELETE FROM bigtwo.sessionplayers WHERE sessionid = $1',
+      values: [ id ]
+    }
+  ];
+
+  return Pool.queries(queries);
 }
 
 export function updateSession(session) {

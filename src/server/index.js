@@ -6,6 +6,7 @@ import SessionRoutes from './routes/SessionRoutes';
 import SessionPlayerRoutes from './routes/SessionPlayerRoutes';
 import GameRoutes from './routes/GameRoutes';
 import PlayerRoutes from './routes/PlayerRoutes';
+import DashboardRoutes from './routes/DashboardRoutes';
 import logger from './utils/Logger';
 import oauth from './middleware/oauth';
 
@@ -28,6 +29,7 @@ app.use('/sessions', oauth, SessionRoutes);
 app.use('/sessions/:sessionid/games', oauth, GameRoutes);
 app.use('/sessions/:sessionid/players', oauth, SessionPlayerRoutes);
 app.use('/players', oauth, PlayerRoutes);
+app.use('/dashboard', oauth, DashboardRoutes);
 
 app.listen(process.env.PORT || 3000, function () {
   logger.info(`Example app listening on port ${process.env.PORT || 3000}!`);

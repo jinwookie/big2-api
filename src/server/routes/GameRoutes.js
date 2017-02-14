@@ -22,7 +22,6 @@ router.delete('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(req.params);
   GameService.addGame(req.params.sessionid, req.body)
     .then(result => res.status(201).json(result))
     .catch(err => res.status(400).send(err.message));

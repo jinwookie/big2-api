@@ -34,3 +34,13 @@ export function updateScore(score) {
     values: [ score.id, score.score ]
   });
 }
+
+export function getTotals() {
+  let text = 'SELECT p.id as playerid, p.firstname, p.lastname, SUM(s.score) as total, COUNT(s.id) as games';
+  text += ' FROM bigtwo.scores s';
+  text += ' INNER JOIN bigtwo.games g ON s.gameid = g.id';
+  text += ' INNER JOIN bigtwo.players p ON s.playerid = p.id';
+  text += ' GROUP BY p.id, p.firstname, p.lastname';
+
+  return Pool.query({ text, values: [ ] });
+}
